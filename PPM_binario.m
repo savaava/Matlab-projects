@@ -38,7 +38,7 @@ Pe_b_teoria = qfunc(sqrt(SNR));
 
 semilogy(SNRdB, Pe_b, 'ro', 'MarkerSize',8)
 hold on
-semilogy(SNRdB,Pe_b_teoria,'k-','LineWidth',2)
+semilogy(SNRdB,Pe_b_teoria,'b-')
 xlabel('SNR in dB')
 ylabel('Probabilità di errore di bit')
 set(gca,'FontSize',16)
