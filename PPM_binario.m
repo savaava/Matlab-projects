@@ -9,7 +9,7 @@ Pe_b = zeros(1,length(SNR));
 for i=1:length(SNR)
     Enow = E(i);
     for z=1:MonteCarlo
-        bitTx = randi([0,1],1);
+        bitTx = randi([0,1]);
         if(bitTx == 1)
             sym = [sqrt(Enow),0]; %trasmetto 1
         else
@@ -30,7 +30,7 @@ for i=1:length(SNR)
         errore(z) = bitRx~=bitTx; % per vedere se ho sbagliato a ricevere
     end
     Pe_b(i) = mean(errore);
-    fprintf('SNRdB=%d -> %d err su %d trasm -> P(e)= %f (PPM)\n', SNRdB(i), sum(errore), MonteCarlo, Pe_b(i));
+    fprintf('SNRdB=%d -> %d err su %d trasm -> P(e)= %f (2-PPM)\n', SNRdB(i), sum(errore), MonteCarlo, Pe_b(i));
     %pause
 end
 
