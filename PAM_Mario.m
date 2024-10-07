@@ -1,76 +1,38 @@
-function [Pe_s, Pe_b]= PAM_Mario(SNRdB, k, MC)
-% SNRdb -> valore singolo
+function [Pe_s, Pe_b] = PAM_Mario(SNRdB, k, MC, flag)
+% M-PAM con un intervallo di diversi SNR -> mostra quindi un grafico
+% di valutazione delle prestazioni in base a SNR e Pe, confrontato con 
+% quello teorico
 
-M=2^k;
-SNR = 10^(SNRdB/10);
-N0 = 1;
-Ebav = SNR*N0;
-Eg = 3*Ebav/(M^2-1); % per ottenere l'energia di g, ossia l'impulso base
-Am = linspace(-(M-1), M-1, M); % sono le ampiezze degli M possibili segnali
-syms = Am*sqrt(Eg); % sono gli M possibili segnali
-syms = syms';
-% vettore colonna -> ogni riga è uno degli M possibili segnali,
-% tutti equidistanti 2sqrt(Eg)
+% INPUT
+% SNRdB = rapporto segnale rumore per bit in decibel
+% k = numero di bit per simbolo
+% flag = 1 se voglio stampare la modulazione e dei messaggi di output
+% flag = 0 se voglio solo il grafico delle prestazioni
 
-errori = zeros(1,MC);
+% OUTPUT
+% Pe_s = probabilità di errore di simbolo stimata per ogni SNR
+% Pe_b = probabilità di errore di bit stimata per ogni SNR
 
-figure;
-hold on;
-plot(syms,zeros(1,M),'ko-','MarkerSize',6,'LineWidth',1,'MarkerFaceColor','k')
-title("Modulazione "+M+"-PAM")
-xlabel(M+" possibili segnali")
-
-fprintf('codifica di gray per gli M=%d segnali\n',M);
-gc = graycode(M)';
-for ii=1:M
-   fprintf('segnale %f  ->  simbolo %d\n', syms(ii), gc(ii)); 
-   % c'è la corrispondenza syms(ii) <-> gc(ii)
-end
-
-pause;
-for ii=1:MC
-    indexTx = randi([1,M]);
-    sym = syms(indexTx);
-    symTx = gc(indexTx);
-
-    r = sym+randn*sqrt(N0/2);
-    %fprintf('sgn tx=%f  ->  sym tx=%d    sgn rx=%f\n', sym, symTx, r);
-
-    min_dist = norm(r-syms(1));
-    symRx = gc(1);
-    for zz=2:M
-        tmp = norm(r-syms(zz));
-        if(tmp < min_dist)
-            min_dist = tmp;
-            symRx = gc(zz);
-        end
-    end
-    
-    errori(ii) = symTx~=symRx; 
-    
-    % generazione iterativa del segnale trasmesso rispetto a quello ricevuto
-    if(errori(ii))
-        color = 'r';
-    else
-        color = 'g';
-    end
-    marker_tx = plot(sym, 0, 'o', 'MarkerSize', 6, 'MarkerFaceColor', 'b');
-    marker_rx = plot(r, 0, 'o', 'MarkerSize', 8, 'MarkerFaceColor', color);
-    fprintf('\nTrasmissione num %d \nsgn tx=%f -> sym tx=%d \nsgn rx=%f -> sym rx=%d -> (errore=%d)\n' ...
-         , ii, sym, symTx, r, symRx, errori(ii));
-
-    pause;
-    delete([marker_tx marker_rx]);
-end
-Pe_s = mean(errori);
-Pe_b = Pe_s/k;
-% posso calcolare Pe_b perchè ho usato la codifica di gray, e suppongo
-% che SNR sia elevato
-hold off;
-
+%% Parametri
+M = 2^k;
+SNR = 10.^(SNRdB/10);
+Pe_s = zeros(1,length(SNRdB));
+Pe_b = zeros(1,length(SNRdB));
 Pe_s_th = 2*(M-1)/M * qfunc(sqrt(6*k/(M^2-1)*SNR));
 Pe_b_th = Pe_s_th/k;
-fprintf('\n(%d-PAM) \nSNRdB= %d -> %d err su %d trasm \nPs(e)   =%f Pb(e)   =%f \nPs_th(e)=%f Pb_th(e)=%f\n\n' ...
-    , M, SNRdB, sum(errori), MC, Pe_s, Pe_b, Pe_s_th, Pe_b_th);
 
+%% Calcolo della Pe per simbolo per tutti gli SNR presi in input
+for ii=1:length(SNRdB)
+    [Pe_s(ii), Pe_b(ii)] = PAM_Mario_util(SNRdB(ii), k, MC, flag);
+    %fprintf('SNRdB=%d -> Ps(e)=%f Pb(e)=%f', SNRdB(ii), Pe_s(ii), Pe_b(ii));
+end
 
+%% Stampa della Pe e della teorica per un confronto
+% semilogy(SNRdB, Pe_s, 'ko', SNRdB, Pe_s_th, 'k-', 'MarkerSize', 6);
+% hold on;
+semilogy(SNRdB, Pe_b_th, 'b-', SNRdB, Pe_b, 'bo', 'MarkerSize', 6);
+hold on;
+title(M+"-PAM")
+xlabel('\gamma_b (dB)')
+ylabel('P(e)')
+grid on
