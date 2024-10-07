@@ -48,19 +48,19 @@ for ii=1:MC
     
     errori(ii) = symTx~=symRx; 
     
-    % % generazione iterativa del segnale trasmesso rispetto a quello ricevuto
-    % if(errori(ii))
-    %     color = 'r';
-    % else
-    %     color = 'g';
-    % end
-    % marker_tx = plot(sym, 0, 'o', 'MarkerSize', 6, 'MarkerFaceColor', 'b');
-    % marker_rx = plot(r, 0, 'o', 'MarkerSize', 8, 'MarkerFaceColor', color);
-    % fprintf('\nTrasmissione num %d \nsgn tx=%f -> sym tx=%d \nsgn rx=%f -> sym rx=%d -> (errore=%d)\n' ...
-    %      , ii, sym, symTx, r, symRx, errori(ii));
-    % 
-    % % pause;
-    % delete([marker_tx marker_rx]);
+    % generazione iterativa del segnale trasmesso rispetto a quello ricevuto
+    if(errori(ii))
+        color = 'r';
+    else
+        color = 'g';
+    end
+    marker_tx = plot(sym, 0, 'o', 'MarkerSize', 6, 'MarkerFaceColor', 'b');
+    marker_rx = plot(r, 0, 'o', 'MarkerSize', 8, 'MarkerFaceColor', color);
+    fprintf('\nTrasmissione num %d \nsgn tx=%f -> sym tx=%d \nsgn rx=%f -> sym rx=%d -> (errore=%d)\n' ...
+         , ii, sym, symTx, r, symRx, errori(ii));
+
+    pause;
+    delete([marker_tx marker_rx]);
 end
 Pe_s = mean(errori);
 Pe_b = Pe_s/k;
