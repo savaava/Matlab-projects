@@ -4,7 +4,7 @@ function [Pe_s, Pe_b] = PAM_Mario(SNRdB, k, MC, flag)
 % quello teorico
 
 % INPUT
-% SNRdB = rapporto segnale rumore per bit in decibel
+% SNRdB = rapporto segnale rumore per SIMBOLO in decibel
 % k = numero di bit per simbolo
 % flag = 1 se voglio stampare la modulazione e dei messaggi di output
 % flag = 0 se voglio solo il grafico delle prestazioni
@@ -18,7 +18,7 @@ M = 2^k;
 SNR = 10.^(SNRdB/10);
 Pe_s = zeros(1,length(SNRdB));
 Pe_b = zeros(1,length(SNRdB));
-Pe_s_th = 2*(M-1)/M * qfunc(sqrt(6*k/(M^2-1)*SNR));
+Pe_s_th = 2*(M-1)/M * qfunc(sqrt(6/(M^2-1)*SNR));
 Pe_b_th = Pe_s_th/k;
 
 %% Calcolo della Pe per simbolo per tutti gli SNR presi in input
@@ -28,8 +28,8 @@ for ii=1:length(SNRdB)
 end
 
 %% Stampa della Pe e della teorica per un confronto
-% semilogy(SNRdB, Pe_s, 'ko', SNRdB, Pe_s_th, 'k-', 'MarkerSize', 6);
-% hold on;
+semilogy(SNRdB, Pe_s, 'ko', SNRdB, Pe_s_th, 'k-', 'MarkerSize', 6);
+hold on;
 semilogy(SNRdB, Pe_b_th, 'b-', SNRdB, Pe_b, 'bo', 'MarkerSize', 6);
 hold on;
 title(M+"-PAM")

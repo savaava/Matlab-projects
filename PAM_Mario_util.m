@@ -1,5 +1,5 @@
 function [Pe_s, Pe_b]= PAM_Mario_util(SNRdB, k, MC, flag)
-% SNRdb -> valore singolo
+% SNRdb -> valore di SNR per simbolo
 
 %% parametri 
 M=2^k;
@@ -52,7 +52,7 @@ for ii=1:MC
     
     errori(ii) = symTx~=symRx; 
     
-    % % generazione iterativa del segnale trasmesso rispetto a quello ricevuto
+    % generazione iterativa del segnale trasmesso rispetto a quello ricevuto
     % if(errori(ii))
     %     color = 'r';
     % else
