@@ -14,7 +14,6 @@ N0 = Eav./SNR; %varia N0
 M = length(Cost(:,1));
 N = length(Cost(1,:));
 Pe_s = zeros(1,length(SNR));
-
 %% calcolo P(e)
 for ii=1:length(N0)
     N0_now = N0(ii);
@@ -42,15 +41,19 @@ for ii=1:length(N0)
 end
 
 %% Stampa 
+figure 
 semilogy(SNRdB, Pe_s, 'ko', 'MarkerSize', 6, 'MarkerFaceColor', 'k')
 hold on
 title("Prestazioni Modulazione - "+M+" segnali - "+N+" Dim")
 xlabel('\gamma_{s,dB}')
 ylabel('P_s(e)')
-% Cost = [-3*sqrt(0.2); ...; 3*sqrt(0.2)] come prova
-% non mettiamo log2(M) perchè SNR è già per simbolo
-% Pe_s_th = 2*(M-1)/M * qfunc(sqrt(6/(M^2-1)*SNR));
-% semilogy(SNRdB, Pe_s_th, 'k-');
+
+if N==1 % la modulazione è il PAM
+    % non mettiamo log2(M) perchè SNR è già per simbolo
+    Pe_s_th = 2*(M-1)/M * qfunc(sqrt(6/(M^2-1)*SNR));
+    semilogy(SNRdB, Pe_s_th, 'b-');
+    legend('P_s(e) di simulazione','P_s(e) teorica')
+end
 grid on
 
 %% partecipanti progetto:
