@@ -1,5 +1,15 @@
 function proj_main(Str, k, SNRdB, MC, flag)
 
+if k==0
+    fprintf('k deve essere maggiore di 0\n')
+    return;
+end
+
+if flag ~= 1 || flag ~= 0
+    fprintf('flag deve essere 1 o 0 \nflag=1 --> simulazione con fading \nflag=0 --> simulazione senza fading\n')
+    return;
+end
+
 if strcmpi(Str,'PAM')
     Cost = proj_PAM_generator(k);    
 elseif strcmpi(Str,'PPM')
@@ -14,6 +24,9 @@ else
 end
 
 if flag
+
+    fprintf('simulazione con fading non implementata')
+    return;
 
 else
     proj_stima_Pe(SNRdB, Cost, MC)
