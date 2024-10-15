@@ -1,4 +1,4 @@
-function Pe_s = proj_stima_Pe(SNRdB, Cost, MC)
+function Pe_s = proj_stima_Pe_Fading(SNRdB, Cost, MC)
 % INPUT
 % Cost -> M righe = M regnali, N colonne = dimensionalità
 % SNRdB -> E' L'SNRdB per SIMBOLO 
@@ -8,17 +8,18 @@ function Pe_s = proj_stima_Pe(SNRdB, Cost, MC)
 % Pe_s -> Probabilità di errore per simbolo su MC prove e per diversi SNR
 
 %% parametri
-SNRnf = 10.^(SNRdB/10); % SNR no fading per SIMBOLO
-Eav = 1; 
-N0 = Eav./SNRnf; % varia N0
+SNRnom = 10.^(SNRdB/10); % SNR nominale per SIMBOLO
+Eav = 1;
 M = length(Cost(:,1));
 N = length(Cost(1,:));
-Pe_s = zeros(1,length(SNRnf));
+Pe_s = zeros(1,length(SNRnom));
 %% calcolo P(e)
-for ii=1:length(SNRnf)
-    N0_now = N0(ii);
+for ii=1:length(SNRnom)
     errori = zeros(1,MC);
-    for jj=1:MC        
+    for jj=1:MC 
+        SNRrv = -SNRnom(ii)*log(rand);
+        N0_now = Eav/SNRrv;
+        
         indexTx = randi(M);
         % scegliamo una delle M righe = una degli M segnali
         s = Cost(indexTx,:);
@@ -42,17 +43,18 @@ end
 
 %% Stampa 
 figure 
-semilogy(SNRdB, Pe_s, 'ko', 'MarkerSize', 6, 'MarkerFaceColor', 'k')
+semilogy(SNRdB, Pe_s, 'ro', 'MarkerSize', 6, 'MarkerFaceColor', 'r')
 hold on
-title("Prestazioni Modulazione - "+M+" segnali - "+N+" Dim")
+title("Prestazioni con Fading "+M+" segnali - "+N+" Dim")
 xlabel('\gamma_{s,dB}')
 ylabel('P_s(e)')
 
 if N==1 % la modulazione è il PAM
     % non mettiamo log2(M) perchè SNR è già per simbolo
-    Pe_s_th = 2*(M-1)/M * qfunc(sqrt(6/(M^2-1)*SNRnf));
+    SNR=SNRnom;
+    Pe_s_th = 2*(M-1)/M * qfunc(sqrt(6/(M^2-1)*SNR));
     semilogy(SNRdB, Pe_s_th, 'b-');
-    legend('P_s(e) di simulazione','P_s(e) teorica')
+    legend('P_s(e) di simulazione con Fading','P_s(e) teorica senza Fading')
 end
 grid on
 

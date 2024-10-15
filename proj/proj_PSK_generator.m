@@ -22,3 +22,4 @@ plot([-1.5 1.5],[0 0],'k-','MarkerSize',6,'MarkerFaceColor','k')
 plot([0 0],[-1.5 1.5],'k-','MarkerSize',6,'MarkerFaceColor','k')
 title(M+"-PSK")
 grid on
+axis('square')
