@@ -13,15 +13,16 @@ Eav = 1;
 M = length(Cost(:,1));
 N = length(Cost(1,:));
 Pe_s = zeros(1,length(SNRnom));
-%% calcolo P(e)
+%% calcolo Ps(e)
 for ii=1:length(SNRnom)
     errori = zeros(1,MC);
     for jj=1:MC 
-        SNRrv = -SNRnom(ii)*log(rand);
+        % simuliamo il Fading: SNR come v.a. per ogni trasmissione
+        SNRrv = myexprnd(SNRnom(ii),1,1);
         N0_now = Eav/SNRrv;
         
+        % scegliamo una delle M righe = uno degli M segnali
         indexTx = randi(M);
-        % scegliamo una delle M righe = una degli M segnali
         s = Cost(indexTx,:);
         r = s + randn(1,N)*sqrt(N0_now/2);
         
@@ -48,6 +49,7 @@ hold on
 title("Prestazioni con Fading "+M+" segnali - "+N+" Dim")
 xlabel('\gamma_{s,dB}')
 ylabel('P_s(e)')
+legend('P_s(e) di simulazione con Fading')
 
 if N==1 % la modulazione è il PAM
     % non mettiamo log2(M) perchè SNR è già per simbolo
@@ -57,11 +59,6 @@ if N==1 % la modulazione è il PAM
     legend('P_s(e) di simulazione con Fading','P_s(e) teorica senza Fading')
 end
 grid on
-
-%% partecipanti progetto:
-%  Savastano Andrea -> 0612707904
-%  Zito Mario -> 0612708073
-%  Musto Francecso -> 0612707371
 
 
 

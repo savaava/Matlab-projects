@@ -14,7 +14,7 @@ N0 = Eav./SNRnf; % varia N0
 M = length(Cost(:,1));
 N = length(Cost(1,:));
 Pe_s = zeros(1,length(SNRnf));
-%% calcolo P(e)
+%% calcolo Ps(e)
 for ii=1:length(SNRnf)
     N0_now = N0(ii);
     errori = zeros(1,MC);
@@ -47,6 +47,7 @@ hold on
 title("Prestazioni Modulazione - "+M+" segnali - "+N+" Dim")
 xlabel('\gamma_{s,dB}')
 ylabel('P_s(e)')
+legend('P_s(e) di simulazione senza Fading')
 
 if N==1 % la modulazione è il PAM
     % non mettiamo log2(M) perchè SNR è già per simbolo
