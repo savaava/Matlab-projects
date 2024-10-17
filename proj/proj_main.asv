@@ -27,12 +27,14 @@ else
 end
 
 %% Simulazione con o senza Fading
-proj_estimate_Pe(SNRdB, Cost, MC)
 if flag
+    proj_estimate_Pe(SNRdB, Cost, MC)
     proj_estimate_Pe_Fading(SNRdB, Cost, MC)
     if L>0
         proj_estimate_Pe_diversity(SNRdB, Cost, MC, L)
     end
+else
+    proj_estimate_Pe(SNRdB, Cost, MC)
 end
 %% partecipanti progetto:
 %  Musto Francecso -> 0612707371
