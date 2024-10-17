@@ -37,6 +37,13 @@ title("Prestazioni con Fading "+M+" segnali - "+N+" Dim")
 legend('P_s(e) di simulazione senza Fading','P_s(e) di simulazione con Fading')
 
 if N==1
+    % Calcolo Pe teorica con fading
+    Pe_s_th_F = zeros(1,length(SNRnom));
+    for ii=1:length(SNRnom)
+        Pe_s_th_F(ii) = (M-1)*(M^2-1)/(6*log2(M)*M*SNRnom(ii));
+    end
+    %semilogy(SNRdB, Pe_s_th_F, 'g-')
+    % legend('P_s(e) di simulazione senza Fading','P_s(e) teorica','P_s(e) di simulazione con Fading','P_s(e) teorica con Fading')
     legend('P_s(e) di simulazione senza Fading','P_s(e) teorica','P_s(e) di simulazione con Fading')
 end
 

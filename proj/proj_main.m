@@ -30,7 +30,7 @@ end
 proj_estimate_Pe(SNRdB, Cost, MC)
 if flag
     proj_estimate_Pe_Fading(SNRdB, Cost, MC)
-    if L>0
+    if L>1
         proj_estimate_Pe_diversity(SNRdB, Cost, MC, L)
     end
 end

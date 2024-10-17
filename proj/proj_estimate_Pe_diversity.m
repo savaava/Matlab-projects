@@ -12,11 +12,7 @@ for ii=1:length(SNRnom)
         indexTx = randi(M);
         s = Cost(indexTx,:);
 
-        SNRrv = zeros(1,L);
-        for zz=1:L
-            SNRrv(zz) = myexprnd(SNRnom(ii),1,1);
-        end
-        
+        SNRrv = myexprnd(SNRnom(ii),1,L);        
         N0_now = Eav/max(SNRrv);        
         r = s + randn(1,N)*sqrt(N0_now/2);
         
@@ -41,6 +37,7 @@ title("Prestazioni con Fading con diversità -> "+M+" segnali - "+N+" Dim - "+L+
 legend('P_s(e) di simulazione senza Fading','P_s(e) di simulazione con Fading','P_s(e) di simulazione con Fading + tecnica diversità')
 
 if N==1
+    % legend('P_s(e) di simulazione senza Fading','P_s(e) teorica','P_s(e) di simulazione con Fading','P_s(e) teorica con Fading','P_s(e) di simulazione con Fading + tecnica diversità')
     legend('P_s(e) di simulazione senza Fading','P_s(e) teorica','P_s(e) di simulazione con Fading','P_s(e) di simulazione con Fading + tecnica diversità')
 end
 
