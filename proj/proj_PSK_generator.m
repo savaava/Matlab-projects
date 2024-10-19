@@ -1,5 +1,12 @@
 function Cost = proj_PSK_generator(k)
+%% parametri In-Out
+% --INPUT--
+% k:     numero di bit da trasmettere
 
+% --OUTPUT--
+% Cost:  Costellazione dei segnali in forma matriciale -> Mx2 (PSK)
+
+%% calcolo matrice Cost
 M = 2^k;
 D = M/2;
 Cost = zeros(M,2);

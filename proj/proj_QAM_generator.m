@@ -1,5 +1,12 @@
 function Cost = proj_QAM_generator(k)
+%% parametri In-Out
+% --INPUT--
+% k:     numero di bit da trasmettere
 
+% --OUTPUT--
+% Cost:  Costellazione dei segnali in forma matriciale -> Mx2 (QAM)
+
+%% calcolo matrice Cost
 M = 2^k;
 qam_symbols = qammod(0:M-1, M);
 Cost(:,1) = real(qam_symbols); 

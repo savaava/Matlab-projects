@@ -1,5 +1,14 @@
 function Pe_s = proj_estimate_Pe_Fading(SNRdB, Cost, MC)
-%% parametri
+%% parametri In-Out
+% --INPUT--
+% SNRdB: Rapporto segnale rumore per decibel per simbolo
+% Cost:  M righe = M regnali, N colonne = dimensionalità
+% MC:    numero MonteCarlo di trasmissioni per ogni SNR
+
+% --OUTPUT--
+% Pe_s:  Probabilità di errore per simbolo su MC prove e per diversi SNR
+
+%% parametri utili
 SNRnom = 10.^(SNRdB/10);
 Eav = 1;
 M = length(Cost(:,1));
@@ -37,14 +46,13 @@ title("Prestazioni con Fading "+M+" segnali - "+N+" Dim")
 legend('P_s(e) di simulazione senza Fading','P_s(e) di simulazione con Fading')
 
 if N==1
-    % Calcolo Pe teorica con fading
+    % Calcolo Pe teorica con fading per il PAM
     Pe_s_th_F = zeros(1,length(SNRnom));
     for ii=1:length(SNRnom)
-        Pe_s_th_F(ii) = (M-1)*(M^2-1)/(6*log2(M)*M*SNRnom(ii));
+        Pe_s_th_F(ii) = (M-1)/M * (1-sqrt(1/(1+(M^2-1)/(3*SNRnom(ii))) ));
     end
-    %semilogy(SNRdB, Pe_s_th_F, 'g-')
-    % legend('P_s(e) di simulazione senza Fading','P_s(e) teorica','P_s(e) di simulazione con Fading','P_s(e) teorica con Fading')
-    legend('P_s(e) di simulazione senza Fading','P_s(e) teorica','P_s(e) di simulazione con Fading')
+    semilogy(SNRdB, Pe_s_th_F, 'Color', '#FF6506')
+    legend('P_s(e) di simulazione senza Fading','P_s(e) teorica senza Fading','P_s(e) di simulazione con Fading','P_s(e) teorica con Fading')
 end
 
 

@@ -1,14 +1,16 @@
 function proj_main(Str, k, SNRdB, MC, flag, L)
-%% Controlli
+%% parametri In
+% --INPUT--
+% Str:   è la modulazione da utilizzare 
+% k:     numero di bit da trasmettere
+% SNRdB: Rapporto segnale rumore per decibel per simbolo
+% MC:    numero MonteCarlo di trasmissioni per ogni SNR
+% flag:  a 1 per simulare il fading
+% L:     numero di ritrasmissioni per la tecnica di diversità (flag=1)
+
+%% Controllo
 if k==0
     fprintf('k deve essere maggiore di 0\n')
-    return;
-end
-
-if flag~=1 && flag~=0
-    fprintf(['flag deve essere 1 o 0 \n' ...
-        'flag=1 --> simulazione con fading \n' ...
-        'flag=0 --> simulazione senza fading\n'])
     return;
 end
 
@@ -27,11 +29,11 @@ else
 end
 
 %% Simulazione con o senza Fading
-proj_estimate_Pe(SNRdB, Cost, MC)
+proj_estimate_Pe(SNRdB, Cost, MC);
 if flag
-    proj_estimate_Pe_Fading(SNRdB, Cost, MC)
+    proj_estimate_Pe_Fading(SNRdB, Cost, MC);
     if L>1
-        proj_estimate_Pe_diversity(SNRdB, Cost, MC, L)
+        proj_estimate_Pe_diversity(SNRdB, Cost, MC, L);
     end
 end
 %% partecipanti progetto:

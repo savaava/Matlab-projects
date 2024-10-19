@@ -1,5 +1,15 @@
 function Pe_s = proj_estimate_Pe_diversity(SNRdB, Cost, MC, L)
-%% parametri
+%% parametri In-Out
+% --INPUT--
+% SNRdB: Rapporto segnale rumore per decibel per simbolo
+% Cost:  M righe = M regnali, N colonne = dimensionalità
+% MC:    numero MonteCarlo di trasmissioni per ogni SNR
+% L:     numero di ritrasmissioni per la tecnica di diversità
+
+% --OUTPUT--
+% Pe_s:  Probabilità di errore per simbolo su MC prove e per diversi SNR
+
+%% parametri utili
 SNRnom = 10.^(SNRdB/10);
 Eav = 1;
 M = length(Cost(:,1));
@@ -32,13 +42,12 @@ for ii=1:length(SNRnom)
 end
 
 %% Stampa 
-semilogy(SNRdB, Pe_s, 'ro', 'MarkerSize', 6, 'MarkerFaceColor', '#FF6506')
+semilogy(SNRdB, Pe_s, 'o','Color', '#006e18','MarkerSize', 6, 'MarkerFaceColor', '#006e18')
 title("Prestazioni con Fading con diversità -> "+M+" segnali - "+N+" Dim - "+L+" ritrasmissioni")
 legend('P_s(e) di simulazione senza Fading','P_s(e) di simulazione con Fading','P_s(e) di simulazione con Fading + tecnica diversità')
 
 if N==1
-    % legend('P_s(e) di simulazione senza Fading','P_s(e) teorica','P_s(e) di simulazione con Fading','P_s(e) teorica con Fading','P_s(e) di simulazione con Fading + tecnica diversità')
-    legend('P_s(e) di simulazione senza Fading','P_s(e) teorica','P_s(e) di simulazione con Fading','P_s(e) di simulazione con Fading + tecnica diversità')
+    legend('P_s(e) di simulazione senza Fading','P_s(e) teorica senza Fading','P_s(e) di simulazione con Fading','P_s(e) teorica con Fading','P_s(e) di simulazione con Fading + tecnica diversità')
 end
 
 
