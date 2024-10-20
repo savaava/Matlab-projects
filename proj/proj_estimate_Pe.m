@@ -51,18 +51,21 @@ end
 %% Stampa 
 figure 
 semilogy(SNRdB, Pe_s, 'bo', 'MarkerSize', 6, 'MarkerFaceColor', 'b')
+
 hold on
 title("Prestazioni Modulazione - "+M+" segnali - "+N+" Dim")
 xlabel('\gamma_{s,dB}')
 ylabel('P_s(e)')
-legend('P_s(e) di simulazione senza Fading')
+lgd = legend('P_s(e) di simulazione senza Fading');
 
 if N==1 % la modulazione è il PAM
     % non mettiamo log2(M) perchè SNR è già per simbolo
     Pe_s_th = 2*(M-1)/M * qfunc(sqrt(6/(M^2-1)*SNRnf));
     semilogy(SNRdB, Pe_s_th, 'Color','#1f77ba');
-    legend('P_s(e) di simulazione senza Fading','P_s(e) teorica senza Fading')
+    lgd = legend('P_s(e) di simulazione senza Fading', ...
+        'P_s(e) teorica senza Fading');
 end
+lgd.FontSize = 20; 
 grid on
 
 %% partecipanti progetto:

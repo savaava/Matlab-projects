@@ -42,8 +42,10 @@ end
 
 %% Stampa 
 semilogy(SNRdB, Pe_s, 'ro', 'MarkerSize', 6, 'MarkerFaceColor', 'r')
+
 title("Prestazioni con Fading "+M+" segnali - "+N+" Dim")
-legend('P_s(e) di simulazione senza Fading','P_s(e) di simulazione con Fading')
+lgd = legend('P_s(e) di simulazione senza Fading', ...
+    'P_s(e) di simulazione con Fading');
 
 if N==1
     % Calcolo Pe teorica con fading per il PAM
@@ -52,8 +54,12 @@ if N==1
         Pe_s_th_F(ii) = (M-1)/M * (1-sqrt(1/(1+(M^2-1)/(3*SNRnom(ii))) ));
     end
     semilogy(SNRdB, Pe_s_th_F, 'Color', '#FF6506')
-    legend('P_s(e) di simulazione senza Fading','P_s(e) teorica senza Fading','P_s(e) di simulazione con Fading','P_s(e) teorica con Fading')
+    lgd = legend('P_s(e) di simulazione senza Fading', ...
+        'P_s(e) teorica senza Fading', ...
+        'P_s(e) di simulazione con Fading', ...
+        'P_s(e) teorica con Fading');
 end
+lgd.FontSize = 20;
 
 
 

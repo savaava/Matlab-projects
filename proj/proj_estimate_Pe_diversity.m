@@ -43,12 +43,20 @@ end
 
 %% Stampa 
 semilogy(SNRdB, Pe_s, 'o','Color', '#006e18','MarkerSize', 6, 'MarkerFaceColor', '#006e18')
+
 title("Prestazioni con Fading con diversità -> "+M+" segnali - "+N+" Dim - "+L+" ritrasmissioni")
-legend('P_s(e) di simulazione senza Fading','P_s(e) di simulazione con Fading','P_s(e) di simulazione con Fading + tecnica diversità')
+lgd = legend('P_s(e) di simulazione senza Fading', ...
+    'P_s(e) di simulazione con Fading', ...
+    'P_s(e) di simulazione con Fading + tecnica diversità');
 
 if N==1
-    legend('P_s(e) di simulazione senza Fading','P_s(e) teorica senza Fading','P_s(e) di simulazione con Fading','P_s(e) teorica con Fading','P_s(e) di simulazione con Fading + tecnica diversità')
+    lgd = legend('P_s(e) di simulazione senza Fading', ...
+        'P_s(e) teorica senza Fading', ...
+        'P_s(e) di simulazione con Fading', ...
+        'P_s(e) teorica con Fading', ...
+        'P_s(e) di simulazione con Fading + tecnica diversità');
 end
+lgd.FontSize = 20;
 
 
 
