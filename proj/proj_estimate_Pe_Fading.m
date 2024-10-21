@@ -59,7 +59,7 @@ if N==1
         'P_s(e) di simulazione con Fading', ...
         'P_s(e) teorica con Fading');
 end
-lgd.FontSize = 20;
+lgd.FontSize = 13;
 
 
 

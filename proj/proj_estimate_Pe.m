@@ -65,7 +65,7 @@ if N==1 % la modulazione è il PAM
     lgd = legend('P_s(e) di simulazione senza Fading', ...
         'P_s(e) teorica senza Fading');
 end
-lgd.FontSize = 20; 
+lgd.FontSize = 13; 
 grid on
 
 %% partecipanti progetto:
