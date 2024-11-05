@@ -1,0 +1,5 @@
+lgd=legend('P_s(e) del 16-PAM senza Fading','P_s(e) teorica del 16-PAM senza Fading','P_s(e) del 16-PPM senza Fading').FontSize = 13;
+
+abbiamo commentato:
+i plot delle costellazioni
+in proj_estimate_Pe legeng, title, legend FontSize, e il colore cambiato
