@@ -50,7 +50,7 @@ end
 
 %% Stampa 
 figure 
-semilogy(SNRdB, Pe_s, 'bo', 'MarkerSize', 6, 'MarkerFaceColor', 'b')
+semilogy(SNRdB, Pe_s, 'ro', 'MarkerSize', 6, 'MarkerFaceColor', 'r')
 
 hold on
 %title("Prestazioni Modulazione - "+M+" segnali - "+N+" Dim")
