@@ -23,10 +23,10 @@ for ii=1:M
 end
 
 %% stampa costellazione PSK
-% plot(Cost(:,1),Cost(:,2),'ko','MarkerSize',6,'MarkerFaceColor','k')
-% hold on
-% plot([-1.5 1.5],[0 0],'k-','MarkerSize',6,'MarkerFaceColor','k')
-% plot([0 0],[-1.5 1.5],'k-','MarkerSize',6,'MarkerFaceColor','k')
-% title(M+"-PSK")
-% grid on
-% axis('square')
+plot(Cost(:,1),Cost(:,2),'ko','MarkerSize',6,'MarkerFaceColor','k')
+hold on
+plot([-1.5 1.5],[0 0],'k-','MarkerSize',6,'MarkerFaceColor','k')
+plot([0 0],[-1.5 1.5],'k-','MarkerSize',6,'MarkerFaceColor','k')
+title(M+"-PSK")
+grid on
+axis('square')
