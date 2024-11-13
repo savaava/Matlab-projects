@@ -1,4 +1,4 @@
-function Cost = proj_PAM_generator(k)
+function Cost = PAM_Generator(k)
 %% parametri In-Out
 % --INPUT--
 % k:     numero di bit da trasmettere

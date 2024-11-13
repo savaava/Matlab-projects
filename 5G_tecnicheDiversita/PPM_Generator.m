@@ -1,4 +1,4 @@
-function Cost = proj_PPM_generator(k)
+function Cost = PPM_Generator(k)
 %% parametri In-Out
 % --INPUT--
 % k:     numero di bit da trasmettere

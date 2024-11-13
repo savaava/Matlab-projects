@@ -1,4 +1,4 @@
-function Cost = proj_PSK_generator(k)
+function Cost = PSK_Generator(k)
 %% parametri In-Out
 % --INPUT--
 % k:     numero di bit da trasmettere

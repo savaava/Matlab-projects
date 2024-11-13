@@ -1,4 +1,4 @@
-function Cost = proj_QAM_generator(k)
+function Cost = QAM_Generator(k)
 %% parametri In-Out
 % --INPUT--
 % k:     numero di bit da trasmettere
