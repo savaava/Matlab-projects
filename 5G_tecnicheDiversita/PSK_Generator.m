@@ -21,6 +21,8 @@ for ii=1:M
     Cost(ii,1) = sx;
     Cost(ii,2) = sy;
 end
+%% Da Commentare
+Cost = Cost * sqrt(100);
 
 %% stampa costellazione PSK
 % plot(Cost(:,1),Cost(:,2),'ko','MarkerSize',6,'MarkerFaceColor','k')
