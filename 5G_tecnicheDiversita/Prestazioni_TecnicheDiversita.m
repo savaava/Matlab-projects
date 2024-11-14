@@ -93,9 +93,9 @@ figure;
 semilogy(SNRdB, P_NoFading, 'bo-','MarkerSize', 6, "MarkerFaceColor", "b")
 hold on;
 semilogy(SNRdB, P_Fading, 'ro-','MarkerSize', 6, "MarkerFaceColor", "r")
-semilogy(SNRdB, P_Selection, 'ko-','MarkerSize', 6, "MarkerFaceColor", "k")
-semilogy(SNRdB, P_Maximal, 'go-','MarkerSize', 6, "MarkerFaceColor", "g")
-semilogy(SNRdB, P_EqualG, 'o-', "Color", "#A2142F", 'MarkerSize', 6, "MarkerFaceColor", "#A2142F")
+semilogy(SNRdB+10*log10(L), P_Selection, 'ko-','MarkerSize', 6, "MarkerFaceColor", "k")
+semilogy(SNRdB+10*log10(L), P_Maximal, 'go-','MarkerSize', 6, "MarkerFaceColor", "g")
+semilogy(SNRdB+10*log10(L), P_EqualG, 'o-', "Color", "#A2142F", 'MarkerSize', 6, "MarkerFaceColor", "#A2142F")
 
 grid on;
 
