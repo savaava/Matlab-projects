@@ -1,6 +1,7 @@
 function prestazioniCDMA(Lc, N, MC, SNRdB)
+    %% parametri INPUT
     % Lc: Numero di colonne (lunghezza del chirping code)
-    % N: Numero di utenti
+    % N:  Numero di utenti
     % MC: Numero di prove Monte Carlo per la somma di Xk e per la stima della P(e)
     % SNRdB: per la simulazione
 
@@ -40,7 +41,6 @@ function prestazioniCDMA(Lc, N, MC, SNRdB)
     xlabel('Somma di Xk indipendenti');
     ylabel('pdf');
     %legend('Empirica', 'Gaussiana teorica');
-    legend('Empirica');
     grid on;
 
     %% Sezione 2: Calcolo della Probabilità di errori
