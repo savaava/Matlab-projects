@@ -9,7 +9,7 @@ function Prestazioni_TecnicheDiversita(SNRdB, N0, sigma, Cost, MC, L)
 
 %% Parametri di utilità
 SNR = 10.^(SNRdB/10);
-%SNR = SNR./L; % SNR i-esimo non su ogni ramo, bensì complessivo
+SNR = SNR./L; % SNR i-esimo non su ogni ramo, bensì complessivo
 E = SNR*N0; % diverse energie usate per trasmettere il segnale
 
 M = length(Cost(:,1)); % Numero dei possibili segnali
