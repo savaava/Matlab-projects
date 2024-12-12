@@ -7,8 +7,8 @@ function prestazioniCDMA(Lc, N, MC, SNRdB)
 
     %% Sezione 1: Calcolo della Media e della Varianza della Somma di Xk
     sommaXk_MC = zeros(1,MC);
-    mediaTeoricaSommaXk = 0;
-    varianzaTeoricaSommaXk = Lc*(N-1); % Somma delle varianze indipendenti
+    %mediaTeoricaSommaXk = 0;
+    %varianzaTeoricaSommaXk = Lc*N; % Somma delle varianze indipendenti
 
     for mc = 1:MC
         matriceCCode = 2*randi([0,1],N,Lc)-1;
