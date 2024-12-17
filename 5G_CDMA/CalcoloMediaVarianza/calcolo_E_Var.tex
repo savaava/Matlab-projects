@@ -1,0 +1,45 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{amsmath}
+
+% ******************************** PACKAGE ****************************
+\usepackage[top=1.5cm, bottom=1.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\begin{document}
+	
+\begin{center}
+	\section*{Ricezione con CDMA}
+\end{center}
+
+\begin{itemize}
+	\item \textit{N}: numero di utenti
+	\item \textit{s}: segnale trasmesso $s\in[-1,1]$ 
+	\item \textit{y}: segnale ricevuto \, $y\in[-1,1]$ 
+	\item $c_n$: chirping code dell'utente \textit{n}
+	\item $L_c$: lunghezza del chirping code
+\end{itemize}
+
+\[
+y = s^2 \pm \sum_{k=1}^{L_c}\left(\sum_{n=2}^{N}c_{1k}\cdot c_{nk}\right)
+  = s^2 \pm \sum_{k=1}^{L_c}X_k 
+  = s^2 \pm n \] 
+
+\begin{itemize}
+	\item $\{X_k\}_{k=1,\dots,L_c}$ sono indipendenti
+	\item \textit{n}: Rumore Gaussiano $N\sim (E,VAR)$
+\end{itemize}
+	
+	
+\section{Calcolo di $E[X_k]$ e $VAR[X_k]$}
+\[
+c_{nk}\in [-1,1] \implies E[c_{nk}] = 0
+\] \\\vspace{-.5cm} \[
+E[X_k] = E\left[\sum_{n=2}^{N}c_{1k}\cdot c_{nk}\right] 
+       = c_{1k}\cdot E\left[\sum_{n=2}^{N}c_{nk}\right]
+       = c_{1k}\cdot \sum_{n=2}^{N}E[c_{nk}] 
+       = 0 
+\] \\\vspace{-.5cm} \[
+VAR[X_k] = 
+\]
+	
+\section{Calcolo di E e VAR della somma degli $X_k$}
+\end{document}
