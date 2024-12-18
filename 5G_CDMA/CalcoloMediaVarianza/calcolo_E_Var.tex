@@ -1,6 +1,6 @@
 \documentclass[12pt, a4paper]{article}
 
-% ******************************** PACKAG\mathrm{E} ****************************
+% ******************************** PACKAGE ****************************
 \usepackage[top=1.5cm, bottom=1.5cm, left=1.5cm, right=1.5cm]{geometry}
 \usepackage{amsmath}
 \usepackage{amsmath}  % Per espressioni matematiche
@@ -9,14 +9,12 @@
 \usepackage{fancyhdr}
 %\usepackage{titlesec}  % Pacchetto per personalizzare le sezioni
 
-% ******************************** S\mathrm{E}TUP ********************************
+% ******************************** SETUP ********************************
 \pagestyle{fancy} % Attiva lo stile fancy
 \fancyhf{} % Pulisce intestazione e piè di pagina
 \fancyfoot[r]{\textit{\textbf{Andrea Savastano}}} % Piè di pagina centrato
 
-
-
-% ******************************** DOCUM\mathrm{E}NTO ****************************
+% ******************************** DOCUMENTO ****************************
 \begin{document}
 	
 \begin{center} \section*{Ricezione con CDMA} \end{center}
@@ -46,19 +44,19 @@ s_1 = \mathcal{E}_s \pm \sum_{k=1}^{L_c}\left(\sum_{n=2}^{N}c_{1k}\cdot c_{nk}\r
 \mathrm{\mathrm{E}}[X_k] = \mathrm{E}\left[\sum_{n=2}^{N}c_{1k}\cdot c_{nk}\right] 
        = c_{1k}\cdot \mathrm{E}\left[\sum_{n=2}^{N}c_{nk}\right]
        = c_{1k}\cdot \sum_{n=2}^{N}\mathrm{E}[c_{nk}] 
-       = \underline{0} 
+       = 0
 \] \\\vspace{-.5cm} \[
 \mathrm{VAR}[X_k] = \mathrm{E}[X_k^2] - \mathrm{E}^2[X_k] = \mathrm{E}[X_k^2] = \mathrm{E}\left[\left(\sum_{n=2}^{N}c_{1k}\cdot c_{nk}\right)^2\right] =
 \mathrm{E}\left[ c_{1k}^2\cdot \sum_{n=2}^{N}c_{nk}^2 \right] =
 \mathrm{E}\left[ \sum_{n=2}^{N}1 \right] =
-\underline{N-1}
+N-1
 \]
 \hrule
 	
 \section{Calcolo di $\mathrm{E}[n]$ e $\mathrm{VAR}[n]$}
 \[
 \mathrm{E}[n] = \mathrm{E}\left[ \sum_{k=1}^{L_c}X_k \right] =
-\sum_{k=1}^{L_c}\mathrm{E}\left[ X_k \right] = \sum_{k=1}^{L_c}0 = \underline{0}
+\sum_{k=1}^{L_c}\mathrm{E}\left[ X_k \right] = \sum_{k=1}^{L_c}0 = 0
 \] \\\vspace{-1.3cm} 
 
 \[
@@ -70,7 +68,7 @@ s_1 = \mathcal{E}_s \pm \sum_{k=1}^{L_c}\left(\sum_{n=2}^{N}c_{1k}\cdot c_{nk}\r
 \implies \mathrm{VAR}[n] = \mathrm{VAR}\left[ \sum_{k=1}^{L_c}X_k \right] =
 \sum_{k=1}^{L_c}\mathrm{VAR}\left[ X_k \right] = 
 \sum_{k=1}^{L_c}\left( N-1 \right) = 
-\underline{L_c \cdot (N-1)}
+L_c \cdot (N-1)
 \] \\
 Applicando il \textit{Teorema Centrale del Limite},\\
 essendo $\{X_k\}_{k=1,\dots,L_c}$
