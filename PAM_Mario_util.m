@@ -76,3 +76,4 @@ Pe_s_th = 2*(M-1)/M * qfunc(sqrt(6*k/(M^2-1)*SNR));
 Pe_b_th = Pe_s_th/k;
 fprintf('\n(%d-PAM) \nSNRdB= %d -> %d err su %d trasm \nPs(e)   =%f Pb(e)   =%f \nPs_th(e)=%f Pb_th(e)=%f\n\n' ...
     , M, SNRdB, sum(errori), MC, Pe_s, Pe_b, Pe_s_th, Pe_b_th);
+

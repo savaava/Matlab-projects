@@ -1,0 +1,62 @@
+\documentclass[12pt, a4paper]{article}
+
+% ******************************** PACKAGE ****************************
+\usepackage[top=1.5cm, bottom=1.5cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{tikz}
+\usepackage{adjustbox}
+\usepackage[colorlinks=true]{hyperref}
+
+% ******************************** SETUP ********************************
+\newcommand{\disablelinkcolor}{%
+	\hypersetup{linkcolor=black}%
+}
+\newcommand{\enablelinkcolor}{
+	\hypersetup{
+		linkcolor=blue
+	}
+}
+
+\pagestyle{fancy} % Imposta lo stile predefinito del documento
+\fancyhf{} % Pulisce intestazioni e piè di pagina
+\fancyhead[L]{\nouppercase{\leftmark}} % Testata sinistra: sezione corrente
+\fancyhead[R]{page \thepage} % Testata destra: numero di pagina
+
+% *************************** MAIN PAGE INFO *****************************
+\title{Prestazioni CDMA}
+\author{Andrea Savastano \\Francesco Musto \\Mario Zito}
+\date{\today}
+
+% ******************************** DOCUMENTO ****************************
+\begin{document}
+	\disablelinkcolor	
+	\maketitle
+	\tableofcontents
+	
+	\newpage
+	\thispagestyle{fancy}
+	\fancyfoot[R]{\textit{\textbf{Andrea Savastano}}} % Piè di pagina a destra con il tuo nome	
+	\section{Calcolo teorico media e varianza}
+	\input{calcoloTh.tex}
+	
+	\newpage
+	% Torno allo stile standard per le pagine successive
+	\fancyfoot{} % Cancella il piè di pagina personalizzato
+	\section{Grafici}
+	\subsection{Distribuzione somma di \(X_k\)}
+	\input{DistribuzioneSomma.tex}
+	
+	\newpage
+	\subsection{Prestazioni CDMA al variare di \(SNR_{dB}\)}
+	\input{PrestazioniCDMA1.tex}
+	
+	\newpage
+	\subsection{Prestazioni CDMA al variare di \(N\)}
+	\input{PrestazioniCDMA2.tex}
+	
+\end{document}

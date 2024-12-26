@@ -1,0 +1,80 @@
+\documentclass[12pt, a4paper]{article}
+
+% ******************************** PACKAGE ****************************
+\usepackage[top=1.5cm, bottom=1.5cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amsmath}  % Per espressioni matematiche
+\usepackage{amssymb}  % Per simboli matematici
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+% ******************************** SETUP ********************************
+\pagestyle{fancy} % Attiva lo stile fancy
+\fancyhf{} % Pulisce intestazione e piè di pagina
+\fancyfoot[r]{\textit{\textbf{Andrea Savastano}}} % Piè di pagina centrato
+
+% ******************************** DOCUMENTO ****************************
+\begin{document}
+	
+\begin{center} \section*{Ricezione con CDMA} \end{center}
+
+\begin{itemize}[itemsep=0pt]
+	\item $N$: numero di utenti
+	\item $\mathcal{E}_s$: Energia del segnale trasmesso $s$ 
+	\item $s_1$: segnale aspettato 
+	\item $c_n$: chirping code dell'utente \textit{n}-esimo
+	\item $L_c$: lunghezza del chirping code
+\end{itemize}
+
+\[
+s_1 = \mathcal{E}_s \pm \sum_{k=1}^{L_c}\left(\sum_{n=2}^{N}c_{1k}\cdot c_{nk}\right)
+  = \mathcal{E}_s \pm \sum_{k=1}^{L_c}X_k
+\] 
+
+\begin{itemize}[itemsep=0pt]
+	\item $\{X_k\}_{k=1,\dots,L_c}$: variabili aleatorie indipendenti
+\end{itemize}
+\hrule
+
+\section{Calcolo di $\mathrm{E}[X_k]$ e $\mathrm{VAR}[X_k]$}
+\[
+\Bigg( c_{nk}\in [-1,1] \Bigg) \implies \Bigg( \mathrm{E}[c_{nk}] = 0 \Bigg)
+\] \\\vspace{-.5cm} \[
+\mathrm{\mathrm{E}}[X_k] = \mathrm{E}\left[\sum_{n=2}^{N}c_{1k}\cdot c_{nk}\right] 
+       = c_{1k}\cdot \mathrm{E}\left[\sum_{n=2}^{N}c_{nk}\right]
+       = c_{1k}\cdot \sum_{n=2}^{N}\mathrm{E}[c_{nk}] 
+       = 0
+\] \\\vspace{-.5cm} \[
+\mathrm{VAR}[X_k] = \mathrm{E}[X_k^2] - \mathrm{E}^2[X_k] = \mathrm{E}[X_k^2] = \mathrm{E}\left[\left(\sum_{n=2}^{N}c_{1k}\cdot c_{nk}\right)^2\right] =
+\mathrm{E}\left[ c_{1k}^2\cdot \sum_{n=2}^{N}c_{nk}^2 \right] =
+\mathrm{E}\left[ \sum_{n=2}^{N}1 \right] =
+N-1
+\]
+\hrule
+	
+\section{Calcolo di $\mathrm{E}[n]$ e $\mathrm{VAR}[n]$}
+\[
+\mathrm{E}[n] = \mathrm{E}\left[ \sum_{k=1}^{L_c}X_k \right] =
+\sum_{k=1}^{L_c}\mathrm{E}\left[ X_k \right] = \sum_{k=1}^{L_c}0 = 0
+\] \\\vspace{-1.3cm} 
+
+\[
+\Bigg( \{X_k\}_{k=1,\dots,L_c}	\text{indipendenti} \Bigg) \implies \Bigg(
+\mathrm{VAR}[X_1+X_2+\dots+X_{Lc}] = \mathrm{VAR}[X_1]+\mathrm{VAR}[X_2]+\dots+\mathrm{VAR}[X_{Lc}] \Bigg)
+\] \\\vspace{-1.2cm} 
+
+\[
+\implies \mathrm{VAR}[n] = \mathrm{VAR}\left[ \sum_{k=1}^{L_c}X_k \right] =
+\sum_{k=1}^{L_c}\mathrm{VAR}\left[ X_k \right] = 
+\sum_{k=1}^{L_c}\left( N-1 \right) = 
+L_c \cdot (N-1)
+\] \\
+Applicando il \textit{Teorema Centrale del Limite},\\
+essendo $\{X_k\}_{k=1,\dots,L_c}$
+indipendenti con $\mathrm{E}[X_k]=0$ e $\mathrm{VAR}[X_k]=(N-1)$ la loro somma genera una variabile aleatoria $n$ con distribuzione Gaussiana e questa è il rumore che si aggiunge in ricezione.
+\[
+\sum_{k=1}^{L_c}X_k = n, \quad\boxed{ n\sim\mathcal{N}\Big(0,\, L_c(N-1)\Big) }
+\implies \Bigg( s_1 = \mathcal{E}_s \pm \sum_{k=1}^{L_c}X_k = \mathcal{E}_s \pm n \Bigg)
+\]
+
+\end{document}
