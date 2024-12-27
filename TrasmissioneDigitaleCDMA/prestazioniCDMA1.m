@@ -5,6 +5,9 @@ function prestazioniCDMA1(Lc, N, MC, SNRdB)
     % MC: Numero di prove Monte Carlo per la somma di Xk e per la stima della P(e)
     % SNRdB: per la simulazione
 
+    % esempio di input:
+    % prestazioniCDMA1(100, 10, 1e5, -20:30)
+
     %% Sezione 1: Calcolo della Media e della Varianza della Somma di Xk
     sommaXk_MC = zeros(1,MC);
     mediaTeoricaSommaXk = 0;
@@ -125,7 +128,7 @@ function prestazioniCDMA1(Lc, N, MC, SNRdB)
     semilogy(SNRdB, Pe2_th, 'k-');
     semilogy(SNRdB, Pe3_th, 'r-');
 
-    title("Prestazioni CDMA con N="+N+" utenti ed Lc="+Lc);
+    title("Prestazioni CDMA con N="+N+" utenti e L_c="+Lc);
     xlabel('SNR_{dB}');
     ylabel('Probabilità di errore P_s(e)');
     lgd = legend('P_{emp}(e) CDMA senza w','P_{emp}(e) CDMA con w','P_{emp}(e) solo con w', ...

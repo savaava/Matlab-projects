@@ -4,6 +4,9 @@ function prestazioniCDMA2(Lc, N, MC, SNRdB)
     % N:  vettore i cui elementi rappresentano diversi numeri di utenti.
     % MC: per la stima della P(e)
     % SNRdB: fissato per la simulazione
+
+    % esempio di input:
+    % prestazioniCDMA2(100, 2:2:100, 1e5, 15)
     
     %% Calcolo della Probabilità di errore
     mediaSommaXk = 0;
@@ -53,7 +56,7 @@ function prestazioniCDMA2(Lc, N, MC, SNRdB)
 
     semilogy(N, Pe2_emp, 'ko-', 'MarkerSize', 6, 'MarkerFaceColor', 'k');
     
-    title("Prestazioni CDMA con SNR fissato a "+SNRdB+"dB ed Lc="+Lc+", al variare di N");
+    title("Prestazioni CDMA con SNR fissato a "+SNRdB+"dB e L_c="+Lc+", al variare di N");
     xlabel('N');
     ylabel('Probabilità di errore P_s(e)');
     lgd = legend('P_{emp}(e) CDMA senza w','P_{emp}(e) CDMA con w');
