@@ -11,6 +11,7 @@
 \usepackage{tikz}
 \usepackage{adjustbox}
 \usepackage[colorlinks=true]{hyperref}
+\usepackage{lastpage}
 
 % ******************************** SETUP ********************************
 \newcommand{\disablelinkcolor}{%
@@ -22,30 +23,29 @@
 	}
 }
 
-\pagestyle{fancy} % Imposta lo stile predefinito del documento
-\fancyhf{} % Pulisce intestazioni e piè di pagina
-\fancyhead[L]{\nouppercase{\leftmark}} % Testata sinistra: sezione corrente
-\fancyhead[R]{page \thepage} % Testata destra: numero di pagina
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{page \thepage\ of \pageref*{LastPage}}
+\fancyfoot[R]{\textit{\textbf{Andrea Savastano}}}
 
 % *************************** MAIN PAGE INFO *****************************
 \title{Prestazioni CDMA}
-\author{Andrea Savastano \\Francesco Musto \\Mario Zito}
+\author{Andrea Savastano}
 \date{\today}
 
 % ******************************** DOCUMENTO ****************************
 \begin{document}
 	\disablelinkcolor	
 	\maketitle
+	\thispagestyle{empty}
 	\tableofcontents
 	
 	\newpage
-	\thispagestyle{fancy}
-	\fancyfoot[R]{\textit{\textbf{Andrea Savastano}}} % Piè di pagina a destra con il tuo nome	
 	\section{Calcolo teorico media e varianza}
 	\input{calcoloTh.tex}
 	
 	\newpage
-	\fancyfoot{}
 	\section{Grafici}
 	\subsection{Distribuzione somma di \(X_k\)}
 	\input{DistribuzioneSomma.tex}
