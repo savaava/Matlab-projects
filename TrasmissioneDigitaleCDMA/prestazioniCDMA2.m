@@ -5,7 +5,7 @@ function prestazioniCDMA2(Lc, N, MC, SNRdB)
     % MC: per la stima della P(e)
     % SNRdB: fissato per la simulazione
 
-    % esempio di input:
+    %% esempio di input:
     % prestazioniCDMA2(100, 2:2:100, 1e5, 15)
     
     %% Calcolo della Probabilità di errore

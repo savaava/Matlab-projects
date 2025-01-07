@@ -7,6 +7,9 @@ function Prestazioni_TecnicheDiversita(SNRdB, N0, sigma, Cost, MC, L)
 % MC:    numero MonteCarlo di trasmissioni per ogni SNR, o per ogni E usata
 % L:     numero di ritrasmissioni (rami) dello stesso segnale s per le tecniche di diversità
 
+%% esempio di input:
+% Prestazioni_TecnicheDiversita(-30:30, 1, 1/sqrt(2), PSK_Generator(3), 1e5, 3)
+
 %% Parametri di utilità
 SNR = 10.^(SNRdB/10);
 SNR = SNR./L; % SNR i-esimo non su ogni ramo, bensì complessivo

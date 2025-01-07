@@ -5,7 +5,7 @@ function prestazioniCDMA1(Lc, N, MC, SNRdB)
     % MC: Numero di prove Monte Carlo per la somma di Xk e per la stima della P(e)
     % SNRdB: per la simulazione
 
-    % esempio di input:
+    %% esempio di input:
     % prestazioniCDMA1(100, 10, 1e5, -20:30)
 
     %% Sezione 1: Calcolo della Media e della Varianza della Somma di Xk
